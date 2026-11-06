@@ -36,9 +36,11 @@ No installation needed — Tailwind CSS and petite-vue load from a CDN.
 5. [Acceptance Criteria](#5-acceptance-criteria)
 6. [Sprint 1 — Basic Application](#6-sprint-1--basic-application)
 7. [Sprint 2 — System Enhancement](#7-sprint-2--system-enhancement)
-8. [Software Testing](#8-software-testing)
-9. [Branches](#branches)
-10. [Project Structure](#project-structure)
+8. [Final Sprint — Polish & Remaining Backlog](#8-final-sprint--polish--remaining-backlog)
+9. [Software Testing](#9-software-testing)
+10. [Sprint Retrospective](#10-sprint-retrospective)
+11. [Branches](#branches)
+12. [Project Structure](#project-structure)
 
 ## 1. Product Vision
 
@@ -181,7 +183,55 @@ A backlog item is **Done** when:
 
 ![Sprint 2](docs/screenshots/sprint-2.png)
 
-## 8. Software Testing
+## 8. Final Sprint — Polish & Remaining Backlog
+
+**Sprint Goal:** *Complete the remaining backlog items, improve usability, and fully test the application before submission.*
+
+**Timebox:** 60 minutes · **Branch:** [`main`](https://github.com/eximno/student-task-management-system/tree/main)
+
+### Sprint Backlog
+
+| ID | Development Task | Expected Output | Owner |
+|---|---|---|---|
+| US11 | Style completed tasks differently | Faded, strikethrough completed tasks | Aian |
+| US13 | Add sort options | Nearest deadline / Title / Recently added | Timothy |
+| US14 | Highlight overdue tasks | Red row, overdue badge and counter | Timothy · Aian |
+| US15 | Filter by student | Member dropdown filter | Timothy |
+| — | Inline validation, status tabs, toast messages, reset demo data | Better usability | Timothy |
+| — | Full regression test | Completed testing table | Justin |
+
+### Daily Scrum
+
+| Member | Accomplished | Next | Impediments |
+|---|---|---|---|
+| Timothy | Sorting, overdue logic, student filter, status tabs | Inline validation and toasts | Date comparison was off by timezone — fixed by comparing local midnight |
+| Aian | Completed and overdue row styles, progress bar | Final responsive check | None |
+| Justin | Wrote test cases | Run full test and accept stories | None |
+
+### Sprint Review
+
+| User Story | Expected Functionality | Status |
+|---|---|---|
+| US11 | Completed tasks visually distinguished | ✅ Accepted |
+| US13 | Sort by nearest deadline | ✅ Accepted |
+| US14 | Overdue tasks highlighted | ✅ Accepted |
+| US15 | Filter by member | ✅ Accepted |
+
+**Carried over:** none — Product Backlog complete.
+
+![Final](docs/screenshots/final.png)
+
+### Initial vs. Improved Version
+
+| Sprint 1 | Final |
+|---|---|
+| Add, categorize, list, complete | + Edit, delete, search, filter, sort |
+| Data lost on refresh | Saved in Local Storage |
+| Single error message | Inline validation per field |
+| No statistics | Total, pending, completed, overdue + progress bar |
+| Completed tasks look the same | Faded + strikethrough; overdue tasks in red |
+
+## 9. Software Testing
 
 | # | Test Case | Expected Result | Actual Result | Status |
 |---|---|---|---|---|
@@ -195,6 +245,9 @@ A backlog item is **Done** when:
 | 8 | Search for a task | Matching task is displayed | Only matching tasks shown | ✅ Pass |
 | 9 | Filter tasks by category | Only matching tasks are displayed | Only that category shown | ✅ Pass |
 | 10 | Refresh the browser | Saved tasks remain available | Tasks loaded from Local Storage | ✅ Pass |
+| 11 | Sort by nearest deadline | Earliest deadline first | Pending tasks ordered by date | ✅ Pass |
+| 12 | Task with a past deadline | Highlighted as overdue | Red row + Overdue badge | ✅ Pass |
+| 13 | Filter by student | Only that member's tasks | Only that member's tasks shown | ✅ Pass |
 
 ### How Local Storage Works
 
@@ -209,6 +262,21 @@ const tasks = JSON.parse(localStorage.getItem('dlsud-stms-tasks')) ?? SEED_TASKS
 ```
 
 Local Storage only stores strings, so the task array is converted to JSON when saving and parsed back when loading. Data stays until the browser storage is cleared.
+
+## 10. Sprint Retrospective
+
+| What Went Well | What Needs Improvement | Action Plan |
+|---|---|---|
+| Clear backlog priorities made Sprint Planning fast | Sprint 1 had no persistence, so testing data was lost on refresh | Pick data-related stories earlier |
+| One branch per member avoided merge conflicts | Some UI bugs were found only during review | Review each other's branch before merging |
+| Petite-vue kept the JavaScript short and readable | Date/timezone handling was tricky | Add test cases for edge dates (today, past, tomorrow) |
+| Daily Scrum surfaced blockers quickly | Small team meant PO and SM also coded | Keep roles clear during events even when sharing work |
+
+**Guide answers (team):**
+- **Were backlog items realistic?** Yes — all selected items were finished in each Sprint.
+- **Communication?** Good; blockers were raised in the Daily Scrum and fixed the same session.
+- **Unfinished tasks?** US11 was kept in the Product Backlog after Sprint 2 and finished in the Final Sprint.
+- **Changes from feedback?** Inline validation and overdue highlighting were added after the Sprint 2 review.
 
 ## Branches
 

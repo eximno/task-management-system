@@ -34,8 +34,9 @@ No installation needed — Tailwind CSS and petite-vue load from a CDN.
 3. [Product Backlog](#3-product-backlog)
 4. [Definition of Done](#4-definition-of-done)
 5. [Acceptance Criteria](#5-acceptance-criteria)
-6. [Branches](#branches)
-7. [Project Structure](#project-structure)
+6. [Sprint 1 — Basic Application](#6-sprint-1--basic-application)
+7. [Branches](#branches)
+8. [Project Structure](#project-structure)
 
 ## 1. Product Vision
 
@@ -99,6 +100,44 @@ A backlog item is **Done** when:
 | **US09** Filter | Choosing a category shows only tasks in that category · "All categories" shows everything |
 | **US10** Statistics | Pending and completed counts are always correct after add / edit / delete / complete |
 | **US12** Persistence | Tasks remain after refreshing or reopening the browser |
+
+## 6. Sprint 1 — Basic Application
+
+**Sprint Goal:** *Develop a basic Student Task Management System that allows students to add, categorize, display, and complete academic tasks.*
+
+**Timebox:** 60 minutes · **Branch:** [`sprint-1`](https://github.com/eximno/student-task-management-system/tree/sprint-1)
+
+### Sprint Backlog
+
+| ID | Development Task | Expected Output | Owner |
+|---|---|---|---|
+| US01 | Create an HTML form for adding tasks | Functional task input form | Timothy |
+| US02 | Add a deadline input field | Date selection functionality | Timothy |
+| US03 | Add a task category dropdown | Task categorization | Timothy |
+| US04 | Display all added tasks | Dynamic task list | Timothy · Aian (layout) |
+| US05 | Add a task completion feature | Status update functionality | Timothy |
+
+### Daily Scrum
+
+| Member | Accomplished | Next | Impediments |
+|---|---|---|---|
+| Timothy | Set up `index.html`, `script.js`, and petite-vue | Task list and completion checkbox | None |
+| Aian | Defined green theme and form/card styles | Badge and checkbox styles | Fonts not loading at first — fixed the Google Fonts link |
+| Justin | Wrote backlog and hardcoded sample tasks | Prepare Sprint 1 review checklist | None |
+
+### Sprint Review
+
+| User Story | Expected Functionality | Status |
+|---|---|---|
+| US01 | Add a task | ✅ Accepted |
+| US02 | Set a deadline | ✅ Accepted |
+| US03 | Categorize a task | ✅ Accepted |
+| US04 | Display tasks | ✅ Accepted |
+| US05 | Complete a task | ✅ Accepted |
+
+**Carried over:** none. Tasks are lost on refresh → US12 moved to the top of Sprint 2.
+
+![Sprint 1](docs/screenshots/sprint-1.png)
 
 ## Branches
 

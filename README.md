@@ -35,8 +35,10 @@ No installation needed — Tailwind CSS and petite-vue load from a CDN.
 4. [Definition of Done](#4-definition-of-done)
 5. [Acceptance Criteria](#5-acceptance-criteria)
 6. [Sprint 1 — Basic Application](#6-sprint-1--basic-application)
-7. [Branches](#branches)
-8. [Project Structure](#project-structure)
+7. [Sprint 2 — System Enhancement](#7-sprint-2--system-enhancement)
+8. [Software Testing](#8-software-testing)
+9. [Branches](#branches)
+10. [Project Structure](#project-structure)
 
 ## 1. Product Vision
 
@@ -138,6 +140,75 @@ A backlog item is **Done** when:
 **Carried over:** none. Tasks are lost on refresh → US12 moved to the top of Sprint 2.
 
 ![Sprint 1](docs/screenshots/sprint-1.png)
+
+## 7. Sprint 2 — System Enhancement
+
+**Sprint Goal:** *Improve the Student Task Management System by implementing editing, deleting, searching, filtering, and data persistence functionalities.*
+
+**Timebox:** 60 minutes · **Branch:** [`sprint-2`](https://github.com/eximno/student-task-management-system/tree/sprint-2)
+
+### Sprint Backlog
+
+| ID | Development Task | Expected Output | Owner |
+|---|---|---|---|
+| US06 | Implement task editing | Updated task information | Timothy |
+| US07 | Implement task deletion | Removed task record | Timothy |
+| US08 | Implement task searching | Search functionality | Timothy |
+| US09 | Implement task filtering | Filtered task list | Timothy |
+| US10 | Display task statistics | Pending and completed counts | Aian (cards) · Timothy |
+| US12 | Implement JavaScript Local Storage | Persistent task records | Timothy |
+
+### Daily Scrum
+
+| Member | Accomplished | Next | Impediments |
+|---|---|---|---|
+| Timothy | Local Storage, edit and delete | Search and category filter | Edited task stayed in the form after deletion — fixed by resetting the form |
+| Aian | Statistics cards and icon buttons | Responsive check on mobile | Delete hover color was overridden by the base button style — fixed with a `.danger` class |
+| Justin | Added more sample tasks | Retest Sprint 1 features with new code | None |
+
+### Sprint Review
+
+| User Story | Expected Functionality | Status |
+|---|---|---|
+| US06 | Edit a task | ✅ Accepted |
+| US07 | Delete a task | ✅ Accepted |
+| US08 | Search tasks | ✅ Accepted |
+| US09 | Filter by category | ✅ Accepted |
+| US10 | Pending / completed counts | ✅ Accepted |
+| US12 | Data persists after refresh | ✅ Accepted |
+
+**Carried over:** US11 (Low) was not selected — kept in the Product Backlog for the Final Sprint.
+
+![Sprint 2](docs/screenshots/sprint-2.png)
+
+## 8. Software Testing
+
+| # | Test Case | Expected Result | Actual Result | Status |
+|---|---|---|---|---|
+| 1 | Add a task with complete information | Task is added successfully | Task appears in the list | ✅ Pass |
+| 2 | Add a task without a title | System prevents submission | "Task title is required." shown | ✅ Pass |
+| 3 | Add a task without a deadline | Appropriate validation shown | "Please set a deadline." shown | ✅ Pass |
+| 4 | Select a task category | Correct category is displayed | Category shown on the task | ✅ Pass |
+| 5 | Mark a task as completed | Task status changes | Badge changes to Completed | ✅ Pass |
+| 6 | Edit an existing task | Task information is updated | Changes saved and displayed | ✅ Pass |
+| 7 | Delete a task | Selected task is removed | Only that task is removed | ✅ Pass |
+| 8 | Search for a task | Matching task is displayed | Only matching tasks shown | ✅ Pass |
+| 9 | Filter tasks by category | Only matching tasks are displayed | Only that category shown | ✅ Pass |
+| 10 | Refresh the browser | Saved tasks remain available | Tasks loaded from Local Storage | ✅ Pass |
+
+### How Local Storage Works
+
+Tasks are saved in the browser under the key `dlsud-stms-tasks`.
+
+```js
+// Save — called after every add, edit, delete, or complete
+localStorage.setItem('dlsud-stms-tasks', JSON.stringify(tasks))
+
+// Load — on page start; falls back to the hardcoded sample tasks
+const tasks = JSON.parse(localStorage.getItem('dlsud-stms-tasks')) ?? SEED_TASKS
+```
+
+Local Storage only stores strings, so the task array is converted to JSON when saving and parsed back when loading. Data stays until the browser storage is cleared.
 
 ## Branches
 

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLSU-D Student Task Management System</title>
+  <link rel="icon" href="assets/logo.png" />
+
+  <!-- Fonts: Figtree (headings), Roboto (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (browser build) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-brand-50: #e8f5ee;
+      --color-brand-100: #c8e8d5;
+      --color-brand-500: #0a8a4a;
+      --color-brand-600: #00703c;
+      --color-brand-700: #005a30;
+      --font-heading: "Figtree", sans-serif;
+      --font-sans: "Roboto", sans-serif;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-slate-50 text-slate-700 font-sans antialiased">
+  <div id="app" v-cloak class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-brand-600 text-white">
+      <div class="max-w-6xl mx-auto px-4 py-5 flex items-center gap-4">
+        <img src="assets/logo.png" alt="DLSU-D seal" class="w-12 h-12 rounded-full bg-white p-0.5" />
+        <div>
+          <h1 class="font-heading text-xl sm:text-2xl font-bold">Student Task Management System</h1>
+          <p class="text-brand-100 text-sm">De La Salle University – Dasmariñas</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8 grid gap-6 lg:grid-cols-[340px_1fr]">
+
+      <!-- US01–US03: Add Task form -->
+      <section class="card p-6 h-fit">
+        <h2 class="font-heading text-lg font-bold text-slate-800 mb-4">Add a Task</h2>
+        <form @submit.prevent="addTask" class="space-y-4" novalidate>
+          <div>
+            <label class="label" for="title">Task Title</label>
+            <input id="title" v-model.trim="form.title" class="input" placeholder="e.g. Lab Report 3" />
+          </div>
+          <div>
+            <label class="label" for="category">Category</label>
+            <select id="category" v-model="form.category" class="input">
+              <option value="">Select category</option>
+              <option v-for="c in categories" :value="c">{{ c }}</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" for="deadline">Deadline</label>
+            <input id="deadline" type="date" v-model="form.deadline" class="input" />
+          </div>
+          <div>
+            <label class="label" for="student">Student</label>
+            <select id="student" v-model="form.student" class="input">
+              <option v-for="s in students" :value="s">{{ s }}</option>
+            </select>
+          </div>
+
+          <p v-if="error" class="text-sm text-red-600">{{ error }}</p>
+
+          <button type="submit" class="btn-primary w-full">Add Task</button>
+        </form>
+      </section>
+
+      <!-- US04–US05: Task list -->
+      <section class="card p-6">
+        <h2 class="font-heading text-lg font-bold text-slate-800 mb-4">My Tasks</h2>
+
+        <p v-if="!tasks.length" class="text-slate-400 text-sm py-10 text-center">No tasks yet.</p>
+
+        <ul class="divide-y divide-slate-100">
+          <li v-for="t in tasks" :key="t.id" class="py-3 flex items-center gap-3">
+            <input type="checkbox" class="checkbox" :checked="t.done" @change="toggleDone(t)" />
+            <div class="flex-1 min-w-0">
+              <p class="font-medium text-slate-800 truncate">{{ t.title }}</p>
+              <p class="text-xs text-slate-500">{{ t.category }} · Due {{ formatDate(t.deadline) }} · {{ t.student }}</p>
+            </div>
+            <span class="badge" :class="t.done ? 'bg-brand-100 text-brand-700' : 'bg-amber-100 text-amber-700'">
+              {{ t.done ? 'Completed' : 'Pending' }}
+            </span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="text-center text-xs text-slate-400 py-6">
+      Sprint 1 · Justin Basilides · Aian Cuento · Timothy Delmoro
+    </footer>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

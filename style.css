@@ -1,0 +1,97 @@
+/* Hide template until petite-vue mounts */
+[v-cloak] { display: none; }
+
+h1, h2, h3 { font-family: "Figtree", sans-serif; }
+
+/* Reusable components */
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.04);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.6rem;
+  background: #fff;
+  font-size: 0.9rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input:focus {
+  outline: none;
+  border-color: #00703c;
+  box-shadow: 0 0 0 3px rgb(0 112 60 / 0.15);
+}
+
+.btn-primary {
+  padding: 0.65rem 1rem;
+  border-radius: 0.6rem;
+  background: #00703c;
+  color: #fff;
+  font-family: "Figtree", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: #005a30; }
+
+.badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.checkbox {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: #00703c;
+  cursor: pointer;
+}
+
+.btn-ghost {
+  padding: 0.65rem 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid #cbd5e1;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn-ghost:hover { background: #f1f5f9; }
+
+.icon-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.icon-btn:hover { background: #f1f5f9; color: #00703c; }
+
+/* Statistics cards */
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+.stat-value {
+  font-family: "Figtree", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.icon-btn.danger:hover { background: #fef2f2; color: #dc2626; }
